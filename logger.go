@@ -48,6 +48,14 @@ func (l *Logger) With(opts ...Option) *Logger {
 	return c
 }
 
+// LevelEnabled 日志对象指定的级别是否启用
+func (l *Logger) LevelEnabled(lvl Level) bool {
+	if lvl < DebugLevel || lvl > FatalLevel {
+		return false
+	}
+	return l.core.Enabled(lvl)
+}
+
 // Debug logs a message at DebugLevel. The message includes any fields passed
 // at the log site, as well as any fields accumulated on the logger.
 func (l *Logger) Debug(msg string, fields ...Field) {

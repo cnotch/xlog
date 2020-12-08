@@ -38,6 +38,11 @@ func ReplaceGlobal(logger *Logger) func() {
 	return func() { ReplaceGlobal(prev) }
 }
 
+// LevelEnabled 日志对象指定的级别是否启用
+func LevelEnabled(lvl Level) bool {
+	return L().LevelEnabled(lvl)
+}
+
 // Debug logs a message at DebugLevel. The message includes any fields passed
 // at the log site, as well as any fields accumulated on the logger.
 func Debug(msg string, fields ...Field) {
